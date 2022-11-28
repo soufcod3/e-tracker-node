@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne } from "typeorm";
-import { ObjectType, Field, InputType, ID, Float } from "type-graphql";
+import { ObjectType, Field, InputType, ID } from "type-graphql";
 import { IsDate, IsNumber, IsString, } from "class-validator";
 import { Budget } from "./Budget";
 import { Category } from "./Category";

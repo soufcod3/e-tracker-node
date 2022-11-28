@@ -38,7 +38,7 @@ export class ExpensesResolver {
   @Query(() => [Expense])
   async getExpenses(): Promise<Expense[]> {
 
-    return await Expense.find({relations: { budget: true }})
+    return await Expense.find({relations: { budget: true, category: true }})
   }
 
   @Mutation(() => Expense)
