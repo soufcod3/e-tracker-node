@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, OneToMany } from "typeorm";
 import { ObjectType, Field, InputType, ID, Float } from "type-graphql";
-import { IsDate, IsNumber, IsString, } from "class-validator";
+import { IsBoolean, IsDate, IsNumber, IsString, } from "class-validator";
 import { Expense } from "./Expense";
 // import { DecimalTransformer } from "./DecimalTransformer";
 // import Decimal from "decimal.js";
@@ -65,4 +65,8 @@ export class BudgetInput {
   @Field()
   @IsNumber()
   kickoffAmount: number;
+
+  @Field()
+  @IsBoolean()
+  isFeatured: boolean
 }
