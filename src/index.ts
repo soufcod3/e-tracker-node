@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
     ],
   });
 
-  console.log('Process env PORT', process.env.PORT)
+  // console.log('Process env PORT', process.env.PORT)
 
   // Create the GraphQL server
   const server = new ApolloServer({
@@ -27,7 +27,7 @@ async function bootstrap(): Promise<void> {
   });
 
   // Start the server
-  const { url } = await server.listen({port: process.env.PORT || 5000 });
+  const { url } = await server.listen({port: 5000 });
   console.log(`Server is running, GraphQL Playground available at ${url}`);
 
   try {
