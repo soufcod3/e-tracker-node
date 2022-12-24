@@ -6,7 +6,7 @@ import { Category } from "./entities/Category";
 
 const datasource = new DataSource({
   type: "mysql",
-  host: "191.96.63.52",
+  host: "localhost",
   port: 3306,
   username: "etracker",
   password: "3rxt@95VF5ht",
