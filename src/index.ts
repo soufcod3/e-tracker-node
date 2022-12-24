@@ -24,7 +24,7 @@ async function bootstrap(): Promise<void> {
   // Create the GraphQL server
   const server = new ApolloServer({
     schema,
-    cors: false,
+    cors: true,
   });
 
   // Start the server
