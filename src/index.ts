@@ -7,7 +7,6 @@ import { BudgetsResolver } from "./resolvers/BudgetResolver";
 import { ExpensesResolver } from "./resolvers/ExpenseResolver";
 import { CategoriesResolver } from "./resolvers/CategoryResolver";
 
-const PORT = process.env.PORT || 5000;
 async function bootstrap(): Promise<void> {
   // ... Building schema here
   const schema = await buildSchema({
@@ -26,7 +25,7 @@ async function bootstrap(): Promise<void> {
   });
 
   // Start the server
-  const { url } = await server.listen(PORT);
+  const { url } = await server.listen({port: process.env.PORT || 5000 });
   console.log(`Server is running, GraphQL Playground available at ${url}`);
 
   try {
