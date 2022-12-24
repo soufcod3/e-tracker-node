@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { Resolver, Mutation, Arg, Query } from "type-graphql";
+import { Resolver, Mutation, Arg, Query, ID } from "type-graphql";
 import datasource from "../utils";
 import { Budget, BudgetInput } from "../entities/Budget";
 import { Expense } from "../entities/Expense";
@@ -18,7 +18,7 @@ export class BudgetsResolver {
   @Query(() => [Budget])
   async getBudgets(): Promise<Budget[]> {
     console.log(await Budget.find())
-    return await Budget.find()
+    return await Budget.find({relations: {expenses: true}})
   }
 
   @Query(() => [Budget])
@@ -45,14 +45,17 @@ export class BudgetsResolver {
     return budget
   }
 
-  @Mutation(() => Budget)
+  @Mutation(() => Budget, { nullable: true})
   async deleteBudget(
-    @Arg("id") id: number
+    @Arg("id", () => ID) id: number
   ): Promise<Budget> {
     const budget = await Budget.findOne({ where: { id } });
-    console.log('budget : ', budget);
+
     if (!budget) throw new Error("Budget not found!")
-    return await budget.remove()
+
+    await datasource.getRepository(Budget).remove(budget)
+    console.log(budget)
+    return budget
   }
 
   @Mutation(() => Budget)
