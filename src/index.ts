@@ -7,8 +7,7 @@ import { BudgetsResolver } from "./resolvers/BudgetResolver";
 import { ExpensesResolver } from "./resolvers/ExpenseResolver";
 import { CategoriesResolver } from "./resolvers/CategoryResolver";
 
-const PORT = 5000;
-
+const PORT = process.env.PORT || 5000;
 async function bootstrap(): Promise<void> {
   // ... Building schema here
   const schema = await buildSchema({
