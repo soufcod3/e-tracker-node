@@ -20,10 +20,11 @@ async function bootstrap(): Promise<void> {
 
   // console.log('Process env PORT', process.env.PORT)
 
+  console.log('env', process.env.NODE_ENV)
   // Create the GraphQL server
   const server = new ApolloServer({
     schema,
-    cors: true,
+    cors: false,
   });
 
   // Start the server
