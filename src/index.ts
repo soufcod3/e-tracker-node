@@ -18,9 +18,8 @@ async function bootstrap(): Promise<void> {
     ],
   });
 
-  // console.log('Process env PORT', process.env.PORT)
-
   console.log('env', process.env.NODE_ENV)
+
   // Create the GraphQL server
   const server = new ApolloServer({
     schema,
@@ -35,7 +34,7 @@ async function bootstrap(): Promise<void> {
     await datasource.initialize();
     console.log("Server started!");
   } catch (err) {
-    console.log("An error occured");
+    console.log("Damn, an error occured");
     console.error(err);
   }
 }
