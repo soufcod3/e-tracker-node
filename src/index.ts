@@ -9,7 +9,7 @@ import { CategoriesResolver } from "./resolvers/CategoryResolver";
 
 async function bootstrap(): Promise<void> {
   // ... Building schema here
-  const schema = await buildSchema({ 
+  const schema = await buildSchema({
     resolvers: [
       UsersResolver,
       BudgetsResolver,
