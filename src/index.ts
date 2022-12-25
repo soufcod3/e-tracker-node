@@ -7,6 +7,8 @@ import { BudgetsResolver } from "./resolvers/BudgetResolver";
 import { ExpensesResolver } from "./resolvers/ExpenseResolver";
 import { CategoriesResolver } from "./resolvers/CategoryResolver";
 
+console.log('On the road to deployment !')
+
 async function bootstrap(): Promise<void> {
   // ... Building schema here
   const schema = await buildSchema({
