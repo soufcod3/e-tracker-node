@@ -6,11 +6,11 @@ import { Category } from "./entities/Category";
 
 const datasource = new DataSource({
   type: "mysql",
-  host: "containers-us-west-120.railway.app",
-  port: 7556,
-  username: "root", // etracker
-  password: "kBsDiem5f96xq7t5BiuU",
-  database: "railway", // etracker
+  host: "localhost",
+  port: 3306,
+  username: "etracker", // etracker
+  password: "3rxt@95VF5ht", // 3rxt@95VF5ht
+  database: "etracker", // etracker
   synchronize: true,
   entities: [User, Budget, Expense, Category],
   logging: ["query", "error"],
