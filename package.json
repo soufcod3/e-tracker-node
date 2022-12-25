@@ -2,10 +2,10 @@
   "name": "typescript-boilerplate",
   "version": "1.0.0",
   "description": "api for e-tracker personal project by soufcode",
-  "main": "./build/index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node-dev src/index.ts"
   },
   "author": "",
   "license": "ISC",
