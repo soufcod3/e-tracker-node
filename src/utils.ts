@@ -8,7 +8,7 @@ const datasource = new DataSource({
   type: "mysql",
   host: "sql927.main-hosting.eu",
   port: 3306,
-  username: "u273251244_etracker", // etracker
+  username: "u273251244", // etracker
   password: "3rxt@95VF5ht",
   database: "u273251244_etracker", // etracker
   synchronize: true,
