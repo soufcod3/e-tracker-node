@@ -21,9 +21,6 @@ async function bootstrap(): Promise<void> {
       ExpensesResolver,
       CategoriesResolver
     ],
-  }).catch(err => {
-    console.log('buildSchema error', err)
-    return undefined
   });
 
   const configurations = {
