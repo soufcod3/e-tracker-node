@@ -28,7 +28,7 @@ async function bootstrap(): Promise<void> {
 
   const configurations = {
     // Note: You may need sudo to run on port 443
-    production: { ssl: true, port: 443, hostname: 'example.com' },
+    production: { ssl: true, port: 5000, hostname: 'e-tracker-server.soufcode.fr' },
     development: { ssl: false, port: 5000, hostname: 'localhost' },
   };
 
@@ -69,23 +69,23 @@ async function bootstrap(): Promise<void> {
     httpServer = http.createServer(app);
   }
 
-  try {
-    httpServer.listen({ port: config.port });
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    console.log(`🚀 Server ready on port ${config.port}`);
-  } catch (err) {
-    console.log("🚧A GraphQL server error occured");
-    console.error(err);
-  }
+  // try {
+  //   httpServer.listen({ port: config.port });
+  //   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  //   console.log(`🚀 Server ready on port ${config.port}`);
+  // } catch (err) {
+  //   console.log("🚧A GraphQL server error occured");
+  //   console.error(err);
+  // }
 
-  try {
-    await datasource.initialize().catch(err => console.log('An error occured', err));
-    console.log("Server started!");
-    console.log(`On the road to deployment : env=${environment}`)
-  } catch (err) {
-    console.log("An error occured");
-    console.error(err);
-  }
+  // try {
+  //   await datasource.initialize().catch(err => console.log('An error occured', err));
+  //   console.log("Server started!");
+  //   console.log(`On the road to deployment : env=${environment}`)
+  // } catch (err) {
+  //   console.log("An error occured");
+  //   console.error(err);
+  // }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
