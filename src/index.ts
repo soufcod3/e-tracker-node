@@ -11,6 +11,7 @@ import express from 'express';
 import http from 'http';
 import https from 'https';
 import fs from 'fs';
+import { GraphQLSchema } from "graphql";
 
 async function bootstrap(): Promise<any> {
   // ... Building schema here
@@ -21,6 +22,9 @@ async function bootstrap(): Promise<any> {
       ExpensesResolver,
       CategoriesResolver
     ],
+  }).catch(err => {
+    console.log('buildSchema error', err)
+    return undefined
   });
 
   const configurations = {
