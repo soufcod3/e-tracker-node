@@ -41,7 +41,7 @@ async function bootstrap(): Promise<void> {
     schema,
     cache: 'bounded'
   });
-  await server.start().catch(err => console.log('server.start error :', err));
+  await server.start();
 
   const app = express();
   server.applyMiddleware({ app })
