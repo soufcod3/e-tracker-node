@@ -64,7 +64,16 @@ async function bootstrap(): Promise<void> {
     httpServer = http.createServer(app);
   }
 
-  await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve)).catch(err => console.log('Promise Error :', err));
+  try {
+    await httpServer.listen({port: config.port});
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    console.log(`🚀 Server ready on port ${config.port}`);
+  } catch (err) {
+    console.log("🚧 A GraphQL server error occured");
+    console.error(err);
+  }
+
+  // await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve)).catch(err => console.log('Promise Error :', err));
 
   try {
     await datasource.initialize();
