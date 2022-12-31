@@ -1,5 +1,6 @@
 import "reflect-metadata";
-import { ApolloServer } from "@apollo/server";
+import dotenv from "dotenv";
+import { ApolloServer } from "apollo-server-express";
 import datasource from "./utils";
 import { buildSchema } from "type-graphql";
 import { UsersResolver } from "./resolvers/UserResolver";
@@ -7,14 +8,11 @@ import { BudgetsResolver } from "./resolvers/BudgetResolver";
 import { ExpensesResolver } from "./resolvers/ExpenseResolver";
 import { CategoriesResolver } from "./resolvers/CategoryResolver";
 import express from 'express';
+// import { expressMiddleware } from '@apollo/server/express4';
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import { expressMiddleware } from '@apollo/server/express4';
 import http from 'http';
 import https from 'https';
 import fs from 'fs';
-
-console.log('On the road to deployment !')
 
 async function bootstrap(): Promise<void> {
   // ... Building schema here
@@ -30,10 +28,11 @@ async function bootstrap(): Promise<void> {
   const configurations = {
     // Note: You may need sudo to run on port 443
     production: { ssl: true, port: 443, hostname: 'example.com' },
-    development: { ssl: false, port: 4000, hostname: 'localhost' },
+    development: { ssl: false, port: 5000, hostname: 'localhost' },
   };
 
-  const environment = process.env.NODE_ENV || 'development';
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  const environment = process.env.NODE_ENV ?? 'development';
   const config = configurations[environment];
 
   // Create the GraphQL server
@@ -43,9 +42,10 @@ async function bootstrap(): Promise<void> {
   await server.start();
 
   const app = express();
+  server.applyMiddleware({app})
   // our express server is mounted at /
-  app.use('/', cors<cors.CorsRequest>(), bodyParser.json(), expressMiddleware(server));
-
+  // app.use('/', cors<cors.CorsRequest>(), bodyParser.json(), expressMiddleware(server));
+  app.use('/', cors<cors.CorsRequest>())
   let httpServer;
 
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -54,8 +54,8 @@ async function bootstrap(): Promise<void> {
     // Make sure these files are secured.
     httpServer = https.createServer(
       {
-        key: fs.readFileSync(`./ssl/${environment}/server.key`),
-        cert: fs.readFileSync(`./ssl/${environment}/server.crt`),
+        key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
+        cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
       },
       app,
     );
@@ -63,11 +63,14 @@ async function bootstrap(): Promise<void> {
     httpServer = http.createServer(app);
   }
 
-  await new Promise<void>((resolve) => httpServer.listen({ port: 5000 }, resolve));
+
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve));
 
   try {
     await datasource.initialize();
     console.log("Server started!");
+    console.log('On the road to deployment !', process.env.NODE_ENV)
   } catch (err) {
     console.log("An error occured");
     console.error(err);
