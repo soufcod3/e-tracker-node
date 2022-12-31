@@ -78,7 +78,7 @@ async function bootstrap(): Promise<void> {
   try {
     await datasource.initialize();
     console.log("Server started!");
-    console.log('On the road to deployment !', process.env.NODE_ENV)
+    console.log(`On the road to deployment : env=${environment}`)
   } catch (err) {
     console.log("An error occured");
     console.error(err);
