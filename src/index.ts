@@ -69,7 +69,7 @@ async function bootstrap(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.log(`🚀 Server ready on port ${config.port}`);
   } catch (err) {
-    console.log("🚧 A GraphQL server error occured");
+    console.log("🚧A GraphQL server error occured");
     console.error(err);
   }
 
