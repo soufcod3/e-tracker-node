@@ -26,6 +26,23 @@ async function bootstrap(): Promise<void> {
     return undefined
   });
 
+  const configurations = {
+    // Note: You may need sudo to run on port 443
+    production: { ssl: true, port: 443, hostname: 'example.com' },
+    development: { ssl: false, port: 5000, hostname: 'localhost' },
+  };
+
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  const environment = process.env.NODE_ENV ?? 'development';
+  const config = configurations[environment];
+
+  // Create the GraphQL server
+  const server = new ApolloServer({
+    schema,
+    cache: 'bounded'
+  });
+  await server.start().catch(err => console.log('server.start error :', err));
+
 
 }
 
