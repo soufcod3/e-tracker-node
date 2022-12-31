@@ -53,8 +53,8 @@ async function bootstrap(): Promise<void> {
     // Make sure these files are secured.
     httpServer = https.createServer(
       {
-        key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
-        cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
+        key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
+        cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
       },
       app,
     );
