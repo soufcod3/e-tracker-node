@@ -50,6 +50,21 @@ async function bootstrap(): Promise<void> {
   // app.use('/', cors<cors.CorsRequest>())
   let httpServer;
 
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  if (config.ssl) {
+    // Assumes certificates are in a .ssl folder off of the package root.
+    // Make sure these files are secured.
+    httpServer = https.createServer(
+      {
+        key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
+        cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
+      },
+      app,
+    );
+  } else {
+    httpServer = http.createServer(app);
+  }
+
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
