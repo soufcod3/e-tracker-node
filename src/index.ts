@@ -61,7 +61,6 @@ async function bootstrap(): Promise<void> {
     );
   } else {
     httpServer = http.createServer(app);
-    console.log(httpServer)
   }
 
   await new Promise<void>((resolve) => httpServer.listen({ port: 5000 }, resolve));
