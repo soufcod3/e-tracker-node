@@ -28,7 +28,7 @@ async function bootstrap(): Promise<void> {
 
   const configurations = {
     // Note: You may need sudo to run on port 443
-    production: { ssl: true, port: 5000, hostname: 'e-tracker-server.soufcode.fr' },
+    production: { ssl: true, port: 443, hostname: 'e-tracker-server.soufcode.fr' },
     development: { ssl: false, port: 5000, hostname: 'localhost' },
   };
 
