@@ -37,7 +37,8 @@ async function bootstrap(): Promise<void> {
 
   // Create the GraphQL server
   const server = new ApolloServer({
-    schema
+    schema,
+    cache: 'bounded'
   });
   await server.start();
 
