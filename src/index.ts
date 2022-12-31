@@ -63,9 +63,7 @@ async function bootstrap(): Promise<void> {
     httpServer = http.createServer(app);
   }
 
-
-
-  await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve));
+  await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve)).catch(err => console.log('Promise Error :', err));
 
   try {
     await datasource.initialize();
