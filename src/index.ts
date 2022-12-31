@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import dotenv from "dotenv";
 import { ApolloServer } from "apollo-server-express";
 import datasource from "./utils";
 import { buildSchema } from "type-graphql";
@@ -9,7 +8,6 @@ import { ExpensesResolver } from "./resolvers/ExpenseResolver";
 import { CategoriesResolver } from "./resolvers/CategoryResolver";
 import express from 'express';
 // import { expressMiddleware } from '@apollo/server/express4';
-import cors from 'cors';
 import http from 'http';
 import https from 'https';
 import fs from 'fs';
@@ -40,7 +38,7 @@ async function bootstrap(): Promise<any> {
     schema,
     cache: 'bounded'
   });
-  await server.start();
+  await server.start().catch(err => console.log('server.start error :', err));
 
   const app = express();
   server.applyMiddleware({ app })
@@ -65,7 +63,7 @@ async function bootstrap(): Promise<any> {
   }
 
   try {
-    await httpServer.listen({ port: config.port });
+    httpServer.listen({ port: config.port });
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.log(`🚀 Server ready on port ${config.port}`);
   } catch (err) {
@@ -76,7 +74,7 @@ async function bootstrap(): Promise<any> {
   // await new Promise<void>((resolve) => httpServer.listen({ port: config.port }, resolve)).catch(err => console.log('Promise Error :', err));
 
   try {
-    await datasource.initialize();
+    await datasource.initialize().catch(err => console.log('An error occured', err));
     console.log("Server started!");
     console.log(`On the road to deployment : env=${environment}`)
   } catch (err) {
