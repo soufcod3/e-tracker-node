@@ -43,6 +43,12 @@ async function bootstrap(): Promise<void> {
   });
   await server.start().catch(err => console.log('server.start error :', err));
 
+  const app = express();
+  server.applyMiddleware({ app })
+  // our express server is mounted at /
+  // app.use('/', cors<cors.CorsRequest>(), bodyParser.json(), expressMiddleware(server));
+  // app.use('/', cors<cors.CorsRequest>())
+  let httpServer;
 
 }
 
