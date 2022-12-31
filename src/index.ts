@@ -54,17 +54,13 @@ async function bootstrap(): Promise<void> {
   if (config.ssl) {
     // Assumes certificates are in a .ssl folder off of the package root.
     // Make sure these files are secured.
-    try {
-      httpServer = https.createServer(
-        {
-          key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
-          cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
-        },
-        app,
-      );
-    } catch (err) {
-      console.log('error while creating server', err)
-    }
+    httpServer = https.createServer(
+      {
+        key: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/privkey.pem`),
+        cert: fs.readFileSync(`/etc/letsencrypt/live/e-tracker-server.soufcode.fr-0001/fullchain.pem`),
+      },
+      app,
+    );
   } else {
     httpServer = http.createServer(app);
   }
