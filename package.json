@@ -19,6 +19,7 @@
     "graphql": "^15.3.0",
     "mysql": "^2.18.1",
     "pg": "^8.8.0",
+    "pm2": "^5.2.2",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.1.1",
     "type-graphql": "^1.1.1",
