@@ -15,8 +15,10 @@ module.exports = {
       repo : 'git@github.com:soufcod3/e-tracker-node.git',
       path : '/var/www/e-tracker-node',
       'pre-deploy-local': '',
-      'post-deploy' : 'npm install && tsc && npx pm2 reload ecosystem.config.js && pm2 ls',
+      'post-deploy' : 'npm install && tsc && npx pm2 reload ecosystem.config.js && npx pm2 ls',
       'pre-setup': ''
     }
   }
 };
+
+// im adding npx before pm2 to prevent "bash: pm2 command not found" ... has to do with "interactive ssh behavior"
