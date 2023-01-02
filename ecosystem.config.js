@@ -20,5 +20,3 @@ module.exports = {
     }
   }
 };
-
-// im adding npx before pm2 to prevent "bash: pm2 command not found" ... has to do with "interactive ssh behavior"
