@@ -14,6 +14,7 @@ const datasource = new DataSource({
   synchronize: true,
   entities: [User, Budget, Expense, Category],
   logging: ["query", "error"],
+  charset: "utf8mb4_unicode_ci"
 });
 
 export default datasource;
