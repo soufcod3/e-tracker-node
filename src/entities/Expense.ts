@@ -3,8 +3,6 @@ import { ObjectType, Field, InputType, ID } from "type-graphql";
 import { IsDate, IsNumber, IsString, } from "class-validator";
 import { Budget } from "./Budget";
 import { Category } from "./Category";
-// import Decimal from "decimal.js";
-// import { DecimalTransformer } from "./DecimalTransformer";
 
 @Entity()
 @ObjectType()

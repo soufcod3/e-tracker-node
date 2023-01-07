@@ -37,7 +37,6 @@ export class ExpensesResolver {
 
   @Query(() => [Expense])
   async getExpenses(): Promise<Expense[]> {
-
     return await Expense.find({relations: { budget: true, category: true }})
   }
 
@@ -45,10 +44,6 @@ export class ExpensesResolver {
   async getExpensesByBudgetId(
     @Arg("budgetId") budgetId: number
   ): Promise<Expense[]> {
-    // const budget = await Budget.findOneOrFail({ where: { id: budgetId }})
-    // console.log('budget found :', budget)
-    // return await Expense.findBy()
-
     return await Expense.find({ where: {budget: { id: budgetId }}, relations: { budget: true, category: true } })
   }
 

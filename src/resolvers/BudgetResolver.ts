@@ -17,14 +17,14 @@ export class BudgetsResolver {
 
   @Query(() => [Budget])
   async getBudgets(): Promise<Budget[]> {
-    console.log(await Budget.find())
-    return await Budget.find({relations: {expenses: true}})
+    // case of nested relation
+    return await Budget.find({relations: { expenses: {category: true} }})
   }
 
-  @Query(() => [Budget])
-  async getFeaturedBudgets(): Promise<Budget[]> {
-    return await Budget.find({ where : { isFeatured: true }, relations : { expenses: true }})
-  }
+  // @Query(() => [Budget])
+  // async getFeaturedBudgets(): Promise<Budget[]> {
+  //   return await Budget.find({ where : { isFeatured: true }, relations : { expenses: true }})
+  // }
 
   @Mutation(() => Budget)
   async switchIsFeatured(
