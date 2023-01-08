@@ -42,8 +42,8 @@ export class ExpenseInput {
   name: string;
 
   @Field()
-  @IsNumber()
-  amount: number;
+  @IsString()
+  amount: string;
 
   @Field()
   @IsDate()

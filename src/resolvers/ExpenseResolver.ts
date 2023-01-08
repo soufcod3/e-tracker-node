@@ -19,7 +19,8 @@ export class ExpensesResolver {
     if (budget) {
       const expense = new Expense()
       expense.name = data.name
-      expense.amount = data.amount
+      console.log('amount =', data.amount)
+      expense.amount = parseFloat(data.amount.replace(',','.'))
       expense.date = data.date
       expense.budget = budget
 
